@@ -1,10 +1,9 @@
 #include <iostream>
 #include <stdlib.h> 
+#include <filesystem>
 using namespace std;
 
 int main(int argc, char** argv){
-    cout << "Hello_1¥¥" << endl;
-
     if (argc != 3){
         cout << "syntax error"<< endl;
         exit(0);
@@ -14,20 +13,27 @@ int main(int argc, char** argv){
         string program = argv[1];
         string submission_code = argv[2];
 
-        cout << "program [" << program << "]" << endl;
+        // caheck the how many test case we have
+        int n_files = 0;
+        std::filesystem::path pp {program};
+        for (auto& p : std::filesystem::directory_iterator(pp)){
+            ++n_files; 
+        }
+        int tests = n_files/2;
 
-        cout << "submissison code [" << submission_code << "]" << endl;
         submission_code = "user_code/" +submission_code;
-        cout << "submissison code [" << submission_code << "]" << endl;
+        string exec_cmd = "g++ -o testing " + submission_code;
+        system(exec_cmd.c_str());
 
-        string test = program + "/test1.input";
-        string cmd = "g++ -o testing " + submission_code;
-        cout << "executing cmd: [" << cmd << "]" << endl;
-        system(cmd.c_str());
-
-        cmd = "./testing < " +test;
-        cout << "executing cmd: [" << cmd << "]" << endl;
-        system(cmd.c_str());
+        int count =0;
+        while(count < tests){
+            int i = count+1;
+            string j = to_string(i);
+            string testing = program + "/test" +j +".input";
+            string test_cmd = "./testing < " +testing;
+            system(test_cmd.c_str());
+            count++;
+        }
         cout << "done" << endl;
     }
     return 0;
