@@ -4,17 +4,22 @@
 #include <fstream>
 
 using namespace std;
-/*
-bool compare (file1, file2){
 
-    if(){
+bool fileCompare (string file1, string file2){
+    std::ifstream f1; f1.open(file1);
+    std::ifstream f2; f2.open(file2);
+    char f1char;
+    char f2char;
+    f1char = f1.get();
+    f2char = f2.get();
+    if(f1char == f2char){
         return true;
     }
     else{
         return false;
     }
 }
-*/
+
 
 int main(int argc, char** argv){
     if (argc != 3){
@@ -49,24 +54,22 @@ int main(int argc, char** argv){
 
             system(test_cmd.c_str());
             user_output.close();
-            /*
 
             string answer = program + "/test" +j +".output"; 
 
-            // compre the test.output and user_output
-            if(compare(user_output, answer) == true){
-                cout << "test" << j << ": pass";
+            // compare the test.output and user_output
+            if(fileCompare("user_output.txt", answer) == true){
+                cout << "test" << j << ": pass" << endl;
             }
             else{
-                cout << "test" << j << ": fail";
+                cout << "test" << j << ": fail" << endl;
             }
 
             std::filesystem::remove("user_output.txt");
-            */
             
             count++;
         }
-        cout << "done" << endl;
+        
     }
     return 0;
 }
