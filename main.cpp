@@ -45,9 +45,9 @@ int main(int argc, char** argv){
             int i = count+1;
             string j = to_string(i);
             string testing = program + "/test" +j +".input";
-            string test_cmd = "./testing < " +testing;
-            //system(test_cmd.c_str());
-            system(system(test_cmd.c_str()) > user_output); // doens't work
+            string test_cmd = "./testing < " +testing + " > user_output.txt";
+
+            system(test_cmd.c_str());
             user_output.close();
             /*
 
