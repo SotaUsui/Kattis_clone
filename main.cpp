@@ -63,12 +63,15 @@ int main(int argc, char** argv){
             }
             else{
                 cout << "test" << j << ": fail" << endl;
+                cout <<"You need to fix yout code" << endl;
+                exit(0);
             }
 
             std::filesystem::remove("user_output.txt");
             
             count++;
         }
+    cout << "Good Job!!" << endl;
         
     }
     return 0;
