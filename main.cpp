@@ -4,6 +4,17 @@
 #include <fstream>
 
 using namespace std;
+/*
+bool compare (file1, file2){
+
+    if(){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+*/
 
 int main(int argc, char** argv){
     if (argc != 3){
@@ -35,13 +46,23 @@ int main(int argc, char** argv){
             string j = to_string(i);
             string testing = program + "/test" +j +".input";
             string test_cmd = "./testing < " +testing;
-            user_output << system(test_cmd.c_str()) << endl; //doesn't work
-            user_output.close(); 
+            //system(test_cmd.c_str());
+            system(system(test_cmd.c_str()) > user_output); // doens't work
+            user_output.close();
+            /*
+
             string answer = program + "/test" +j +".output"; 
 
             // compre the test.output and user_output
+            if(compare(user_output, answer) == true){
+                cout << "test" << j << ": pass";
+            }
+            else{
+                cout << "test" << j << ": fail";
+            }
 
             std::filesystem::remove("user_output.txt");
+            */
             
             count++;
         }
