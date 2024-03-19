@@ -1,6 +1,6 @@
 # Kattis_clone
 
-Get the user code and compare to answer.
+Get the user code, compile it, test it, then compare to the answer.
 
 Usage (after compile main.cpp):
 - ./a.out [Name of Program] [Name of your code]
